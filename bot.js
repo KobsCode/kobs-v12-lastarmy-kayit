@@ -3,7 +3,7 @@ const app = express();
 const http = require("http");
 app.get("/", (request, response) => {
   console.log(
-    `Az Önce Bot Ping yedi, Sorun önemli değil merak etme. Hatayı düzelttik.`
+    `Youtube | Kobs Abone Olmayı Unutma !`
   );
   response.sendStatus(200);
 });
@@ -14,18 +14,19 @@ setInterval(() => {
 const Discord = require("discord.js");
 const db = require('quick.db')
 const client = new Discord.Client();
-const ayarlar = require("./ayarlar.json");
+const ayarlar = require('./kobs.json')
 const fs = require("fs");
 const moment = require("moment");
 moment.locale("tr")
 const chalk = require("chalk");
 require("./util/eventLoader")(client);
 
-var prefix = ayarlar.prefix;
+
 
 const log = message => {
   console.log(`[${moment().format("YYYY-MM-DD HH:mm:ss")}] ${message}`);
 };
+
 
 client.commands = new Discord.Collection();
 client.aliases = new Discord.Collection();

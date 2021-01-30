@@ -1,48 +1,48 @@
 const Discord = require('discord.js');
-const db = require('quick.db');
 
-exports.run = async(client, message, args) => {
-   if(!message.member.roles.cache.has('YetkiliRolİD')) return message.channel.send('Bu komutu kullanabilmek için <@&YetkiliRolİD>Rolüne Sahıp Olmalısınız')
-   let member = message.mentions.users.first() 
-   if(!member) {
-       return message.channel.send('Bir kişi etiketlemelisin')
-   }
-   let erkek = message.guild.roles.cache.find(s => s.name === 'Erkek')
-   
-   
-   
-   let kayıtsız = message.guild.roles.cache.find(r => r.name === 'Kayıtsız')
-
-   let kayıt = message.guild.member(member)
-   let isim = args[1]
-   let yas = args[2]
-
-   if(!isim) return message.channel.send('İsim belirtmelisin')
-   if(isNaN(yas)) return message.channel.send('Yaş belirtmelisin')
-
-   kayıt.setNickname(`${isim} ・ ${yas}`)
+exports.run = async (client, message, args) => {
   
-   kayıt.roles.add(erkek)
   
-   kayıt.roles.remove(kayıtsız)
+ if(!message.member.roles.cache.has('762306051336437800')) return message.channel.send('Bu kodu kullanmak için yeterli yetkin yok!')
   
-   let embed = new Discord.MessageEmbed()
-   .setColor('BLUE')
-   .setTitle('Kayıt Başarılı')
-   .addField('Kayıt edilen kullanıcı',member)
-   .addField('Adı ;', isim)
-   .addField('Yaşı ;', yas)
-   .addField('Kayıt eden yetkili', message.author)
-  message.channel.send(embed)
-}
+  let member = message.mentions.members.first();
+  let isim = args[1]
+  let yaş = args[2]
+  let al = "762306275916644372"; ///alınacak rol idsi
+  let ver = "762306051999531068"; ///verilecek rol idsi
+  if (!member) return message.channel.send("Bir Kullanıcı Etiketle");
+  if (!isim) return message.channel.send("Bir İsim Girmelisin!");
+  member.setNickname(`${isim}  [${yaş}]`);
+  
+    member.roles.add(ver);
+    member.roles.remove(al);
+  
 
-exports.conf = {
-    enabled: true,
-    guildOnly: false,
-    aliases:['e'],
-    permlevel: 0
+  const embed = new Discord.MessageEmbed()
+    .setColor("BLUE")
+    .setTitle(":butterfly: Kayıt işlemi başarılı :butterfly:")
+    .setImage("https://media.tenor.com/images/5a8496cf0faf284d514a8cedc3f7332d/tenor.gif")
+    .setDescription(`
+**Kayıt Edilen Kullanıcı** : ${member.user.username}
+**Kayıt Eden Yetkili** : ${message.author.username}
+
+**Kayıt İşleminde Verilen Rol** : 
+<@&762306051999531068>
+
+**Kayıt İşleminde Alınan Rol** :
+<@&762306275916644372>
+`)
+message.channel.send(embed)
 };
 
+exports.conf = {
+  enabled: true,
+  guildOnly: true,
+  aliases: ["erkek" , "e"],
+  permLevel: 0
+}
 exports.help = {
-    name: "erkek"
+  name: 'Erkek',
+  description: "Erkek Kayıt Sıstemı",
+  usage: 'Erkek isim yaş'
 }

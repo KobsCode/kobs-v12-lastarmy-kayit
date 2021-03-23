@@ -3,7 +3,7 @@ const app = express();
 const http = require("http");
 app.get("/", (request, response) => {
   console.log(
-    `Youtube | Kobs Abone Olmayı Unutma !`
+    `Youtube.Com/KobsCode | Kanalına Abone Olmayı Unutma !`
   );
   response.sendStatus(200);
 });
@@ -14,7 +14,7 @@ setInterval(() => {
 const Discord = require("discord.js");
 const db = require('quick.db')
 const client = new Discord.Client();
-const ayarlar = require('./kobs.json')
+const ayarlar = require('./ayarlar.json')
 const fs = require("fs");
 const moment = require("moment");
 moment.locale("tr")
